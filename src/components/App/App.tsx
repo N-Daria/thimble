@@ -1,13 +1,13 @@
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./App.module.css";
-import { UsersContext, UserData } from "../../store/store";
+import { UsersContext, UserData, ThemeContext } from "../../store/store";
 import List from "../List/List";
 import Actions from "../Actions/Actions";
 import { getData } from "../../api/api";
 
 function App() {
   const [users, setUsers] = useState<UserData[] | null>(null);
+  const [theme, setTheme] = useState("dark");
 
   useEffect(() => {
     // initial rendering
@@ -15,10 +15,12 @@ function App() {
   }, []);
 
   return (
-    <UsersContext.Provider value={{ users, setUsers }}>
-      <Actions />
-      <List />
-    </UsersContext.Provider>
+    <ThemeContext.Provider value={{ theme, setTheme }}>
+      <UsersContext.Provider value={{ users, setUsers }}>
+        <Actions />
+        <List />
+      </UsersContext.Provider>
+    </ThemeContext.Provider>
   );
 }
 

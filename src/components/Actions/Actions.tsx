@@ -1,10 +1,11 @@
 import { useState, useContext } from "react";
 import styles from "./Actions.module.css";
 import { sendUser, getData, deleteUserList } from "../../api/api";
-import { UsersContext } from "../../store/store";
+import { UsersContext, ThemeContext } from "../../store/store";
 
 export default function Actions() {
   const { setUsers } = useContext(UsersContext);
+  const { theme, setTheme } = useContext(ThemeContext);
 
   const [form, setForm] = useState({
     name: "",
@@ -48,6 +49,10 @@ export default function Actions() {
     } catch (e) {
       console.log(e);
     }
+  }
+
+  function handleSwitchMode() {
+    theme === "light" ? setTheme("dark") : setTheme("light");
   }
 
   return (
@@ -104,7 +109,7 @@ export default function Actions() {
       </form>
 
       <label>
-        <input type="checkbox" />
+        <input type="checkbox" onClick={handleSwitchMode} />
         <span>Mode</span>
       </label>
 
