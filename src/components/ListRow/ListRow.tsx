@@ -1,7 +1,7 @@
 import styles from "./ListRow.module.css";
-import { userData } from "../../store/store";
+import { UserData } from "../../store/store";
 
-export default function ListRow(data: userData) {
+export default function ListRow(data: UserData) {
   return (
     <tr>
       <td>{data.name}</td>

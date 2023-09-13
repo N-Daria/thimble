@@ -1,10 +1,14 @@
-export interface userData {
+import React from "react";
+
+export type UserData = {
   id: number;
   name: string;
   age: number;
   subscription: string;
   employment: boolean;
-}
+};
+
+export const UsersContext = React.createContext<UserData[] | null>(null);
 
 export const mockData = {
   data: [
