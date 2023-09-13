@@ -1,0 +1,81 @@
+.section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 12px 6px 6px;
+  border-radius: 8px;
+  border: 1px solid #595959;
+  color: inherit;
+  background: inherit;
+  width: 100%;
+  max-width: 316px;
+  position: relative;
+
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+.input {
+  width: 100%;
+  padding: 12px 8px;
+  border: 1px solid #595959;
+  border-radius: 8px;
+  background-color: inherit;
+  color: inherit;
+
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+.input::placeholder {
+  color: inherit;
+}
+
+.dark {
+  background-color: #313131;
+  color: #d3d3d3;
+}
+
+.light {
+  background-color: white;
+  color: #313131;
+}
+
+.header {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  margin: 0;
+  font-weight: inherit;
+  position: absolute;
+  top: -10px;
+  margin-left: 5px;
+}
+
+.form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.form::after {
+  content: "";
+  width: 273px;
+  height: 2px;
+  background-color: #595959;
+  margin: 22px auto;
+}
+
+.button {
+  width: 100%;
+  padding: 12px 8px;
+  border: none;
+  border-radius: 8px;
+  background-color: #595959;
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+}

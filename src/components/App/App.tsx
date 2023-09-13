@@ -17,8 +17,12 @@ function App() {
   return (
     <ThemeContext.Provider value={{ theme, setTheme }}>
       <UsersContext.Provider value={{ users, setUsers }}>
-        <Actions />
-        <List />
+        <main className={`${styles.app} ${styles[theme]}`}>
+          <div className={styles.content}>
+            <Actions />
+            <List />
+          </div>
+        </main>
       </UsersContext.Provider>
     </ThemeContext.Provider>
   );

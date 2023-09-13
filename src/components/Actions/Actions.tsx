@@ -8,7 +8,7 @@ export default function Actions() {
   const { theme, setTheme } = useContext(ThemeContext);
 
   const [form, setForm] = useState({
-    name: "",
+    name: "Name",
     age: "",
     subscription: "subscribed",
     employment: false,
@@ -56,25 +56,27 @@ export default function Actions() {
   }
 
   return (
-    <div>
-      <form onSubmit={(e) => handleSubmit(e)}>
+    <div className={styles.section}>
+      <h2 className={`${styles.header} ${styles[theme]}`}>Insert Row</h2>
+      <form onSubmit={(e) => handleSubmit(e)} className={styles.form}>
         <input
+          className={`${styles.input} ${styles[theme]}`}
           value={form.name}
           type="text"
           placeholder="Name"
           name="name"
-          required
           onChange={(e) => {
             serialize(e.target.name, e.target.value);
           }}
         />
 
         <input
+          className={`${styles.input} ${styles[theme]}`}
           value={form.age}
           type="number"
           placeholder="Age"
           name="age"
-          min={0}
+          min={18}
           required
           onChange={(e) => {
             serialize(e.target.name, Number(e.target.value));
@@ -82,6 +84,7 @@ export default function Actions() {
         />
 
         <select
+          className={`${styles.input} ${styles[theme]}`}
           value={form.subscription}
           name="subscription"
           onChange={(e) => {
@@ -105,7 +108,9 @@ export default function Actions() {
           <span>Employed</span>
         </label>
 
-        <button type="submit">Insert</button>
+        <button type="submit" className={styles.button}>
+          Insert
+        </button>
       </form>
 
       <label>
@@ -113,7 +118,7 @@ export default function Actions() {
         <span>Mode</span>
       </label>
 
-      <button type="button" onClick={handleDelete}>
+      <button type="button" onClick={handleDelete} className={styles.button}>
         Delete
       </button>
     </div>
