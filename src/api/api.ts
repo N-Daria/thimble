@@ -11,3 +11,7 @@ export function getData(): UserData[] {
 export function sendUser(id: string, user: string): void {
   localStorage.setItem(id, user);
 }
+
+export function deleteUserList(): void {
+  localStorage.clear();
+}

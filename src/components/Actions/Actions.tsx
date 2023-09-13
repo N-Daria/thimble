@@ -1,6 +1,6 @@
 import { useState, useContext } from "react";
 import styles from "./Actions.module.css";
-import { sendUser, getData } from "../../api/api";
+import { sendUser, getData, deleteUserList } from "../../api/api";
 import { UsersContext } from "../../store/store";
 
 export default function Actions() {
@@ -39,6 +39,15 @@ export default function Actions() {
       employment: false,
       id: 0,
     });
+  }
+
+  function handleDelete() {
+    try {
+      deleteUserList();
+      setUsers(getData());
+    } catch (e) {
+      console.log(e);
+    }
   }
 
   return (
@@ -99,7 +108,9 @@ export default function Actions() {
         <span>Mode</span>
       </label>
 
-      <button type="button">Delete</button>
+      <button type="button" onClick={handleDelete}>
+        Delete
+      </button>
     </div>
   );
 }
