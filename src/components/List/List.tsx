@@ -1,9 +1,11 @@
 import style from "./List.module.css";
 import ListRow from "../ListRow/ListRow";
-
-import { mockData } from "../../store/store";
+import { useContext } from "react";
+import { UserData, UsersContext } from "../../store/store";
 
 export default function List() {
+  const users = useContext(UsersContext);
+
   return (
     <>
       <table>
@@ -16,8 +18,9 @@ export default function List() {
           </tr>
         </thead>
         <tbody>
-          {mockData.data &&
-            mockData.data.map((user) => <ListRow {...user} key={user.id} />)}
+          {users.users?.map((user: UserData) => (
+            <ListRow {...user} key={user.id} />
+          ))}
         </tbody>
       </table>
     </>

@@ -1,10 +1,14 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import styles from "./Actions.module.css";
+import { sendUser, getData } from "../../api/api";
+import { UsersContext } from "../../store/store";
 
 export default function Actions() {
+  const { setUsers } = useContext(UsersContext);
+
   const [form, setForm] = useState({
     name: "",
-    age: 1,
+    age: "",
     subscription: "subscribed",
     employment: false,
     id: 0,
@@ -18,15 +22,30 @@ export default function Actions() {
     e.preventDefault();
 
     const id = Date.now();
-
     const userData = JSON.stringify({ ...form, id: id });
-    localStorage.setItem(id.toString(), userData);
+
+    try {
+      sendUser(id.toString(), userData);
+      setUsers(getData());
+    } catch (e) {
+      console.log(e);
+    }
+
+    // clear form
+    setForm({
+      name: "",
+      age: "",
+      subscription: "subscribed",
+      employment: false,
+      id: 0,
+    });
   }
 
   return (
     <div>
       <form onSubmit={(e) => handleSubmit(e)}>
         <input
+          value={form.name}
           type="text"
           placeholder="Name"
           name="name"
@@ -37,10 +56,11 @@ export default function Actions() {
         />
 
         <input
+          value={form.age}
           type="number"
           placeholder="Age"
           name="age"
-          min={1}
+          min={0}
           required
           onChange={(e) => {
             serialize(e.target.name, Number(e.target.value));
@@ -48,6 +68,7 @@ export default function Actions() {
         />
 
         <select
+          value={form.subscription}
           name="subscription"
           onChange={(e) => {
             serialize(e.target.name, e.target.value);
@@ -60,6 +81,7 @@ export default function Actions() {
 
         <label>
           <input
+            checked={form.employment}
             type="checkbox"
             name="employment"
             onChange={(e) => {
