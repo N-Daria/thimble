@@ -70,34 +70,61 @@ export default function Actions() {
           }}
         />
 
-        <input
-          className={`${styles.input} ${styles[theme]}`}
-          value={form.age}
-          type="number"
-          placeholder="Age"
-          name="age"
-          min={18}
-          required
-          onChange={(e) => {
-            serialize(e.target.name, Number(e.target.value));
-          }}
-        />
-
-        <select
-          className={`${styles.input} ${styles[theme]}`}
-          value={form.subscription}
-          name="subscription"
-          onChange={(e) => {
-            serialize(e.target.name, e.target.value);
-          }}
-        >
-          <option value="subscribed">Subscribed</option>
-          <option value="not">Not Subscribed</option>
-          <option value="other">Other</option>
-        </select>
-
-        <label>
+        <div className={styles.numberInput}>
           <input
+            className={`${styles.input} ${styles[theme]}`}
+            value={form.age}
+            type="number"
+            placeholder="Age"
+            name="age"
+            min={18}
+            required
+            onChange={(e) => {
+              serialize(e.target.name, Number(e.target.value));
+            }}
+          />
+
+          <button
+            className={styles.numberSubstract}
+            type="button"
+            onClick={() => {
+              if (Number(form.age) > 18) {
+                serialize("age", Number(form.age) - 1);
+              }
+            }}
+          ></button>
+
+          <button
+            className={styles.numberAdd}
+            type="button"
+            onClick={() => {
+              if (Number(form.age) >= 18) {
+                serialize("age", Number(form.age) + 1);
+              } else {
+                serialize("age", 18);
+              }
+            }}
+          ></button>
+        </div>
+
+        <div className={styles.selectBox}>
+          <select
+            className={`${styles.input} ${styles[theme]} ${styles.select}`}
+            value={form.subscription}
+            name="subscription"
+            onChange={(e) => {
+              serialize(e.target.name, e.target.value);
+            }}
+          >
+            <option value="subscribed">Subscribed</option>
+            <option value="not">Not Subscribed</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+
+        <label className={styles.checkboxBlock}>
+          <input
+            className={styles.checkbox}
             checked={form.employment}
             type="checkbox"
             name="employment"
@@ -105,7 +132,8 @@ export default function Actions() {
               serialize(e.target.name, e.target.checked);
             }}
           />
-          <span>Employed</span>
+          <span className={styles.checkmark} />
+          <span className={styles.checkboxText}>Employed</span>
         </label>
 
         <button type="submit" className={styles.button}>
@@ -113,9 +141,14 @@ export default function Actions() {
         </button>
       </form>
 
-      <label>
-        <input type="checkbox" onClick={handleSwitchMode} />
-        <span>Mode</span>
+      <label className={styles.switch}>
+        <span className={styles.switchText}>Mode</span>
+        <input
+          className={styles.checkbox}
+          type="checkbox"
+          onClick={handleSwitchMode}
+        />
+        <span className={styles.slider} />
       </label>
 
       <button type="button" onClick={handleDelete} className={styles.button}>
