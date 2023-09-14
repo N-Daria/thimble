@@ -1,14 +1,14 @@
 import { useState, useContext } from "react";
 import styles from "./Actions.module.css";
 import { sendUser, getData, deleteUserList } from "../../api/api";
-import { UsersContext, ThemeContext } from "../../store/store";
+import { UsersContext, ThemeContext, UserData } from "../../store/store";
 
 export default function Actions() {
   const { setUsers } = useContext(UsersContext);
   const { theme, setTheme } = useContext(ThemeContext);
 
-  const [form, setForm] = useState({
-    name: "Name",
+  const [form, setForm] = useState<UserData>({
+    name: "",
     age: "",
     subscription: "subscribed",
     employment: false,
@@ -23,7 +23,14 @@ export default function Actions() {
     e.preventDefault();
 
     const id = Date.now();
-    const userData = JSON.stringify({ ...form, id: id });
+
+    const userData = JSON.stringify({
+      name: form.name || "Name",
+      age: form.age,
+      subscription: form.subscription,
+      employment: form.employment || "Unmployed",
+      id: id,
+    });
 
     try {
       sendUser(id.toString(), userData);
@@ -129,7 +136,11 @@ export default function Actions() {
             type="checkbox"
             name="employment"
             onChange={(e) => {
-              serialize(e.target.name, e.target.checked);
+              if (e.target.checked) {
+                serialize(e.target.name, "Employed");
+              } else {
+                serialize(e.target.name, "Unmployed");
+              }
             }}
           />
           <span className={styles.checkmark} />

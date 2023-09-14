@@ -8,7 +8,7 @@ export interface UserContext {
 export interface UserData {
   id: number;
   name: string;
-  age: number;
+  age: number | string;
   subscription: string;
   employment: boolean;
 }
