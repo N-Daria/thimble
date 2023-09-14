@@ -1,0 +1,7 @@
+.rowClicked {
+  background-color: #217346;
+}
+
+.rowNotClicked {
+  background-color: inherit;
+}

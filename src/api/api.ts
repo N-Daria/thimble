@@ -12,6 +12,10 @@ export function sendUser(id: string, user: string): void {
   localStorage.setItem(id, user);
 }
 
-export function deleteUserList(): void {
-  localStorage.clear();
+// export function deleteUserList(): void {
+//   localStorage.clear();
+// }
+
+export function deleteUser(key: string): void {
+  localStorage.removeItem(key);
 }

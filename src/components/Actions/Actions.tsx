@@ -1,18 +1,24 @@
 import { useState, useContext } from "react";
 import styles from "./Actions.module.css";
-import { sendUser, getData, deleteUserList } from "../../api/api";
-import { UsersContext, ThemeContext, UserData } from "../../store/store";
+import { sendUser, getData, deleteUser } from "../../api/api";
+import {
+  UsersContext,
+  ThemeContext,
+  UserData,
+  formState,
+  CurrentUserContext,
+} from "../../store/store";
 
 export default function Actions() {
   const { setUsers } = useContext(UsersContext);
   const { theme, setTheme } = useContext(ThemeContext);
+  const { currentUser } = useContext(CurrentUserContext);
 
-  const [form, setForm] = useState<UserData>({
+  const [form, setForm] = useState<formState>({
     name: "",
     age: "",
     subscription: "subscribed",
     employment: false,
-    id: 0,
   });
 
   function serialize(name: string, value: string | number | boolean): void {
@@ -45,16 +51,17 @@ export default function Actions() {
       age: "",
       subscription: "subscribed",
       employment: false,
-      id: 0,
     });
   }
 
   function handleDelete() {
-    try {
-      // deleteUserList();
-      // setUsers(getData());
-    } catch (e) {
-      console.log(e);
+    if (currentUser) {
+      try {
+        deleteUser(currentUser.id.toString());
+        setUsers(getData());
+      } catch (e) {
+        console.log(e);
+      }
     }
   }
 
