@@ -1,4 +1,4 @@
-import { useState, useContext } from "react";
+import { useContext } from "react";
 import styles from "./ListRow.module.css";
 import { CurrentUserContext, UserData } from "../../store/store";
 

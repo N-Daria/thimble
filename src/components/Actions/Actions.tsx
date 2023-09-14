@@ -4,7 +4,6 @@ import { sendUser, getData, deleteUser } from "../../api/api";
 import {
   UsersContext,
   ThemeContext,
-  UserData,
   formState,
   CurrentUserContext,
 } from "../../store/store";
