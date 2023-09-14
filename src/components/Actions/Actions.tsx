@@ -28,7 +28,7 @@ export default function Actions() {
       name: form.name || "Name",
       age: form.age,
       subscription: form.subscription,
-      employment: form.employment || "Unmployed",
+      employment: form.employment ? "Employed" : "Unmployed",
       id: id,
     });
 
@@ -51,8 +51,8 @@ export default function Actions() {
 
   function handleDelete() {
     try {
-      deleteUserList();
-      setUsers(getData());
+      // deleteUserList();
+      // setUsers(getData());
     } catch (e) {
       console.log(e);
     }
@@ -137,9 +137,9 @@ export default function Actions() {
             name="employment"
             onChange={(e) => {
               if (e.target.checked) {
-                serialize(e.target.name, "Employed");
+                serialize(e.target.name, true);
               } else {
-                serialize(e.target.name, "Unemployed");
+                serialize(e.target.name, false);
               }
             }}
           />
