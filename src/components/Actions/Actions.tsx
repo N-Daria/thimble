@@ -63,11 +63,11 @@ export default function Actions() {
   }
 
   return (
-    <div className={styles.section}>
-      <h2 className={`${styles.header} ${styles[theme]}`}>Insert Row</h2>
+    <div className={`${styles.section} ${styles[theme]}`}>
+      <h2 className={styles.header}>Insert Row</h2>
       <form onSubmit={(e) => handleSubmit(e)} className={styles.form}>
         <input
-          className={`${styles.input} ${styles[theme]}`}
+          className={styles.input}
           value={form.name}
           type="text"
           placeholder="Name"
@@ -79,7 +79,7 @@ export default function Actions() {
 
         <div className={styles.numberInput}>
           <input
-            className={`${styles.input} ${styles[theme]}`}
+            className={styles.input}
             value={form.age}
             type="number"
             placeholder="Age"
@@ -92,7 +92,7 @@ export default function Actions() {
           />
 
           <button
-            className={styles.numberSubstract}
+            className={`${styles.numberButton} ${styles.numberSubstract}`}
             type="button"
             onClick={() => {
               if (Number(form.age) > 18) {
@@ -102,7 +102,7 @@ export default function Actions() {
           ></button>
 
           <button
-            className={styles.numberAdd}
+            className={`${styles.numberButton} ${styles.numberAdd}`}
             type="button"
             onClick={() => {
               if (Number(form.age) >= 18) {
@@ -116,7 +116,7 @@ export default function Actions() {
 
         <div className={styles.selectBox}>
           <select
-            className={`${styles.input} ${styles[theme]} ${styles.select}`}
+            className={`${styles.input} ${styles.select}`}
             value={form.subscription}
             name="subscription"
             onChange={(e) => {
@@ -139,7 +139,7 @@ export default function Actions() {
               if (e.target.checked) {
                 serialize(e.target.name, "Employed");
               } else {
-                serialize(e.target.name, "Unmployed");
+                serialize(e.target.name, "Unemployed");
               }
             }}
           />
@@ -152,10 +152,10 @@ export default function Actions() {
         </button>
       </form>
 
-      <label className={styles.switch}>
+      <label className={styles.switchBox}>
         <span className={styles.switchText}>Mode</span>
         <input
-          className={styles.checkbox}
+          className={styles.switcher}
           type="checkbox"
           onClick={handleSwitchMode}
         />
